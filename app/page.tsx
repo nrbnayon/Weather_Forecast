@@ -1,4 +1,4 @@
-import { WeatherApp } from "@/components/weather-app"
+import { WeatherApp } from "@/components/landing/weather-app"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
