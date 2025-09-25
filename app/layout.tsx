@@ -4,6 +4,7 @@ import { Bricolage_Grotesque, DM_Sans } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
+import { ReduxProvider } from "@/redux/provider/redux-provider"
 
 const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   description:
     "Get accurate weather forecasts and current conditions for any city worldwide. Features hourly and daily forecasts, weather alerts, and more.",
   keywords: ["weather", "forecast", "temperature", "climate", "weather app"],
-  authors: [{ name: "Weather Now" }],
+  authors: [{ name: "Nayon" }],
   creator: "Weather Now",
   publisher: "Weather Now",
   formatDetection: {
@@ -78,7 +79,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${bricolageGrotesque.variable} ${dmSans.variable}`}>
         {/* <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange> */}
-          <Suspense fallback={null}>{children}</Suspense>
+          <Suspense fallback={null}><ReduxProvider>{children}</ReduxProvider></Suspense>
         {/* </ThemeProvider> */}
         <Analytics />
       </body>
