@@ -1,26 +1,276 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Weather App Color System */
+  --weather-navy: #f8fafc;
+  --weather-orange: #ff820a;
+  --weather-white: #1e293b;
+  --weather-dark-purple: #ffffff;
+  --weather-light-gray: #64748b;
+  --weather-blue: #4658d9;
+  --weather-medium-purple: #f1f5f9;
+  --weather-dark-purple-gray: #e2e8f0;
+
+  /* Design System Colors */
+  --primary: var(--weather-blue);
+  --primary-foreground: #ffffff;
+  --secondary: var(--weather-medium-purple);
+  --secondary-foreground: var(--weather-white);
+  --accent: var(--weather-orange);
+  --accent-foreground: #ffffff;
+  --background: var(--weather-navy);
+  --foreground: var(--weather-white);
+  --card: var(--weather-dark-purple);
+  --card-foreground: var(--weather-white);
+  --popover: var(--weather-dark-purple);
+  --popover-foreground: var(--weather-white);
+  --muted: var(--weather-dark-purple-gray);
+  --muted-foreground: var(--weather-light-gray);
+  --border: var(--weather-dark-purple-gray);
+  --input: var(--weather-medium-purple);
+  --ring: var(--weather-blue);
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --radius: 0.75rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1e293b;
+  --sidebar-primary: #4658d9;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ff820a;
+  --sidebar-accent-foreground: #ffffff;
+  --chart-1: #4658d9;
+  --chart-2: #6366f1;
+  --chart-3: #3c3b5e;
+  --chart-4: #262540;
+  --chart-5: #ef4444;
+}
+
+.dark {
+  /* Weather App Color System */
+  --weather-navy: #02012c;
+  --weather-orange: #ff820a;
+  --weather-white: #ffffff;
+  --weather-dark-purple: #262540;
+  --weather-light-gray: #d4d3d9;
+  --weather-blue: #4658d9;
+  --weather-medium-purple: #3c3b5e;
+  --weather-dark-purple-gray: #302f4a;
+
+  /* Design System Colors */
+  --primary: var(--weather-blue);
+  --primary-foreground: var(--weather-white);
+  --secondary: var(--weather-medium-purple);
+  --secondary-foreground: var(--weather-white);
+  --accent: var(--weather-orange);
+  --accent-foreground: var(--weather-white);
+  --background: var(--weather-navy);
+  --foreground: var(--weather-white);
+  --card: var(--weather-medium-purple);
+  --card-foreground: var(--weather-white);
+  --popover: var(--weather-dark-purple);
+  --popover-foreground: var(--weather-white);
+  --muted: var(--weather-dark-purple-gray);
+  --muted-foreground: var(--weather-light-gray);
+  --border: var(--weather-medium-purple);
+  --input: var(--weather-medium-purple);
+  --ring: var(--weather-blue);
+  --destructive: #ef4444;
+  --destructive-foreground: var(--weather-white);
+  --radius: 0.75rem;
+  --sidebar: #02012c;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ff820a;
+  --sidebar-primary-foreground: #02012c;
+  --sidebar-accent: #ef4444;
+  --sidebar-accent-foreground: #02012c;
+  --chart-1: #ff820a;
+  --chart-2: #ef4444;
+  --chart-3: #4658d9;
+  --chart-4: #6366f1;
+  --chart-5: #3c3b5e;
 }
 
 @theme inline {
+  /* updating font variables to use custom fonts */
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-bricolage-grotesque);
+
+  /* Weather App Colors */
+  --color-weather-navy: var(--weather-navy);
+  --color-weather-orange: var(--weather-orange);
+  --color-weather-white: var(--weather-white);
+  --color-weather-dark-purple: var(--weather-dark-purple);
+  --color-weather-light-gray: var(--weather-light-gray);
+  --color-weather-blue: var(--weather-blue);
+  --color-weather-medium-purple: var(--weather-medium-purple);
+  --color-weather-dark-purple-gray: var(--weather-dark-purple-gray);
+
+  /* Design System */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100vh;
+    /* Added smooth transition for theme changes */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-weather-dark-purple;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-weather-medium-purple rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-weather-blue;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Weather Card Gradients */
+  .weather-gradient {
+    background: linear-gradient(135deg, #4658d9 0%, #6366f1 100%);
+  }
+
+  .weather-gradient-alt {
+    background: linear-gradient(135deg, #3c3b5e 0%, #262540 100%);
+  }
+
+  /* Glass Effect */
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(60, 59, 94, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Loading Animation */
+  .loading-dots {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+
+  .loading-dots div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--weather-blue);
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+
+  .loading-dots div:nth-child(1) {
+    left: 8px;
+    animation: loading-dots1 0.6s infinite;
+  }
+
+  .loading-dots div:nth-child(2) {
+    left: 8px;
+    animation: loading-dots2 0.6s infinite;
+  }
+
+  .loading-dots div:nth-child(3) {
+    left: 32px;
+    animation: loading-dots2 0.6s infinite;
+  }
+
+  .loading-dots div:nth-child(4) {
+    left: 56px;
+    animation: loading-dots3 0.6s infinite;
+  }
+
+  @keyframes loading-dots1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes loading-dots3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  @keyframes loading-dots2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Adding font-display utility class for Bricolage Grotesque */
+  .font-display {
+    font-family: var(--font-bricolage-grotesque);
+  }
 }
