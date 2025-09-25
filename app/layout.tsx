@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
 import { ReduxProvider } from "@/redux/provider/redux-provider"
+import { ThemeProvider } from "@/components/ui/theme-provider"
 
 const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -78,9 +79,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${bricolageGrotesque.variable} ${dmSans.variable}`}>
-        {/* <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange> */}
+      <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+          // forcedTheme='dark'
+        >
           <Suspense fallback={null}><ReduxProvider>{children}</ReduxProvider></Suspense>
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

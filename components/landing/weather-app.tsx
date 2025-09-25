@@ -1,6 +1,6 @@
 "use client"
 
-import { useWeatherData } from "@/lib/hooks/useWeatherData"
+import { useWeatherData } from "@/hooks/useWeatherData"
 import { Header } from "@/components/layout/header"
 import { WeatherSearch } from "@/components/search/weather-search"
 import { CurrentWeatherCard } from "@/components/weather/current-weather-card"
