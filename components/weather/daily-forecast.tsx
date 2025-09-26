@@ -57,15 +57,15 @@ export function DailyForecast({ forecast, temperatureUnit, className }: DailyFor
 
   return (
     <div className={className}>
-      <h3 className="text-xl font-semibold text-weather-white mb-4">Daily forecast</h3>
-      <div className="grid grid-cols-7 gap-3">
-        {dailyForecast.map((day, index) => (
-          <WeatherCard key={day.date} className="text-center p-4">
+      <h3 className="text-xl font-semibold text-weather-white mb-5">Daily forecast</h3>
+      <div className="flex justify-between gap-4">
+        {dailyForecast.map((day) => (
+          <WeatherCard key={day.date} className="text-center p-4 md:w-28 border border-weather-medium-purple bg-weather-dark-purple">
             <p className="text-weather-light-gray text-sm mb-3">{day.day}</p>
             <div className="flex justify-center mb-3">
-              <WeatherIcon iconCode={day.icon} size={32} />
+              <WeatherIcon iconCode={day.icon} size={60} />
             </div>
-            <div className="space-y-1">
+            <div className="flex justify-between items-center">
               <p className="text-weather-white font-semibold">
                 {day.high}
                 {unitSymbol}

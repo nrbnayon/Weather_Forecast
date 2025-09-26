@@ -26,7 +26,7 @@ export function WeatherCard({
       )}
       style={style}
     >
-      <CardContent className="p-0">{children}</CardContent>
+      <CardContent className="p-0 h-full">{children}</CardContent>
     </Card>
   );
 }

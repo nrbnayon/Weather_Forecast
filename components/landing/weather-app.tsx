@@ -91,9 +91,9 @@ export function WeatherApp() {
     // Weather data available
     if (currentWeather) {
       return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column - Main Weather */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-8 mb-20">
             <CurrentWeatherCard
               weather={currentWeather}
               temperatureUnit={temperatureUnit}
@@ -103,16 +103,6 @@ export function WeatherApp() {
 
             {forecast && (
               <DailyForecast
-                forecast={forecast}
-                temperatureUnit={temperatureUnit}
-              />
-            )}
-
-            <WeatherDetails weather={currentWeather} settings={settings} />
-
-            {forecast && (
-              <WeatherSummary
-                weather={currentWeather}
                 forecast={forecast}
                 temperatureUnit={temperatureUnit}
               />
@@ -144,10 +134,10 @@ export function WeatherApp() {
 
         <div className="px-6">
           {/* Main Title */}
-          <div className="text-center mb-5 md:mb-12">
-            <h2 className="text-2xl md:text-[52px] font-bold text-foreground mb-4 md:mb-16 text-balance font-display">
-              How's the sky looking today?
-            </h2>
+          <div className="text-center mb-12">
+          <h2 className="text-[52px] font-bold text-foreground mb-4 md:mb-16 text-balance font-display leading-tight">
+  How's the sky looking today?
+</h2>
 
             {/* Search Bar */}
             <WeatherSearch onSearch={handleSearch} isLoading={isLoading} />

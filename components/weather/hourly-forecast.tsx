@@ -86,7 +86,7 @@ export function HourlyForecast({
   return (
     <div
       className={cn(
-        "space-y-4 bg-weather-dark-purple p-6 rounded-xl",
+        "space-y-4 bg-weather-dark-purple p-6 rounded-xl mb-20",
         className
       )}
     >
@@ -127,11 +127,11 @@ export function HourlyForecast({
         {hourlyData.map((hour, index) => (
           <WeatherCard
             key={`${hour.time}-${index}`}
-            className="p-4 bg-weather-dark-purple-gray"
+            className="p-4 bg-weather-dark-purple-gray border border-weather-medium-purple rounded-md"
           >
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3">
-                <WeatherIcon iconCode={hour.icon} size={20} />
+                <WeatherIcon iconCode={hour.icon} size={40} />
                 <span className="text-weather-white">{hour.time}</span>
               </div>
               <span className="text-weather-white font-semibold">
