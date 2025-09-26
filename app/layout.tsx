@@ -88,7 +88,7 @@ export default function RootLayout({
           defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange
-          // forcedTheme='dark'
+          forcedTheme='dark'
         >
           <Suspense fallback={null}>
             <ReduxProvider>{children}</ReduxProvider>

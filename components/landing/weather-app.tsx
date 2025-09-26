@@ -1,19 +1,21 @@
 "use client";
 
+import { useEffect } from "react";
 import { useWeatherData } from "@/hooks/useWeatherData";
+import { useAutoLocation } from "@/hooks/useAutoLocation";
 import { Header } from "@/components/layout/header";
 import { WeatherSearch } from "@/components/search/weather-search";
 import { CurrentWeatherCard } from "@/components/weather/current-weather-card";
 import { WeatherStats } from "@/components/weather/weather-stats";
 import { DailyForecast } from "@/components/weather/daily-forecast";
 import { HourlyForecast } from "@/components/weather/hourly-forecast";
-import { WeatherDetails } from "@/components/weather/weather-details";
-import { WeatherSummary } from "@/components/weather/weather-summary";
+// import { WeatherDetails } from "@/components/weather/weather-details";
+// import { WeatherSummary } from "@/components/weather/weather-summary";
 import { WeatherLoading } from "@/components/loading/weather-loading";
 import { ForecastLoading } from "@/components/loading/forecast-loading";
 import { WeatherError } from "@/components/error/weather-error";
 import { CityNotFound } from "@/components/error/city-not-found";
-import { SearchEmptyState } from "@/components/search/search-states";
+import { SearchEmptyState, SearchErrorState } from "@/components/search/search-states";
 import { ErrorBoundary } from "@/components/error/error-boundary";
 
 export function WeatherApp() {
@@ -32,7 +34,16 @@ export function WeatherApp() {
     retrySearch,
   } = useWeatherData();
 
+  const { detectedCity, isLoading: isDetectingLocation, error: locationError } = useAutoLocation();
+
   const settings = { temperatureUnit, windSpeedUnit, precipitationUnit };
+
+  // Auto-load weather data when location is detected and no city is selected
+  useEffect(() => {
+    if (detectedCity && !selectedCity && !isLoading && !currentWeather) {
+      searchWeather(detectedCity);
+    }
+  }, [detectedCity, selectedCity, isLoading, currentWeather, searchWeather]);
 
   const handleSearch = (city: string) => {
     searchWeather(city);
@@ -47,7 +58,20 @@ export function WeatherApp() {
   };
 
   const renderContent = () => {
-    // Error states
+    // Location detection error (when auto-location fails)
+    if (locationError && !selectedCity && !currentWeather) {
+      return (
+        <SearchErrorState
+          error={`${locationError}. Please search for a city manually.`}
+          onClear={() => {
+            // Clear any location errors and show search interface
+          }}
+          className='min-h-[400px]'
+        />
+      );
+    }
+
+    // Weather data error states
     if (hasError && error) {
       if (error.includes("not found") || error.includes("404")) {
         return (
@@ -70,7 +94,7 @@ export function WeatherApp() {
     }
 
     // Loading state
-    if (isLoading) {
+    if (isLoading || isDetectingLocation) {
       return (
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
           <div className='lg:col-span-2'>
@@ -83,8 +107,8 @@ export function WeatherApp() {
       );
     }
 
-    // Empty state (no search yet)
-    if (!currentWeather && !selectedCity) {
+    // Empty state (no search yet and no auto-detected location)
+    if (!currentWeather && !selectedCity && !detectedCity) {
       return <SearchEmptyState className='min-h-[200px] md:min-h-[400px]' />;
     }
 
