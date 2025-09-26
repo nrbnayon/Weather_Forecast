@@ -58,31 +58,39 @@ export function WeatherSummary({ weather, forecast, temperatureUnit, className }
   }
 
   return (
-    <WeatherCard className={cn("", className)}>
-      <div className="space-y-4 p-6">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-weather-white">Weather Summary</h3>
+    <WeatherCard className={cn("mb-20", className)}>
+      <div className='space-y-4 p-6 '>
+        <div className='flex items-center justify-between'>
+          <h3 className='text-lg font-semibold text-weather-white'>
+            Weather Summary
+          </h3>
           {tempTrend && (
-            <div className="flex items-center gap-1 text-weather-light-gray">
-              <tempTrend.icon className="w-4 h-4" />
-              <span className="text-sm capitalize">{tempTrend.trend}</span>
+            <div className='flex items-center gap-1 text-weather-light-gray'>
+              <tempTrend.icon className='w-4 h-4' />
+              <span className='text-sm capitalize'>{tempTrend.trend}</span>
             </div>
           )}
         </div>
 
-        <p className="text-weather-light-gray leading-relaxed text-pretty">{getWeatherSummary()}</p>
+        <p className='text-weather-light-gray leading-relaxed text-pretty'>
+          {getWeatherSummary()}
+        </p>
 
-        <div className="grid grid-cols-2 gap-4 pt-2 border-t border-weather-dark-purple-gray">
+        <div className='grid grid-cols-2 gap-4 pt-2 border-t border-weather-dark-purple-gray'>
           <div>
-            <p className="text-weather-light-gray text-sm">Condition</p>
-            <p className="text-weather-white font-medium capitalize">{weather.weather[0].description}</p>
+            <p className='text-weather-light-gray text-sm'>Condition</p>
+            <p className='text-weather-white font-medium capitalize'>
+              {weather.weather[0].description}
+            </p>
           </div>
           <div>
-            <p className="text-weather-light-gray text-sm">Cloud Cover</p>
-            <p className="text-weather-white font-medium">{weather.clouds.all}%</p>
+            <p className='text-weather-light-gray text-sm'>Cloud Cover</p>
+            <p className='text-weather-white font-medium'>
+              {weather.clouds.all}%
+            </p>
           </div>
         </div>
       </div>
     </WeatherCard>
-  )
+  );
 }

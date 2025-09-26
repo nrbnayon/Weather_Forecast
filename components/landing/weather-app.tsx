@@ -131,15 +131,6 @@ export function WeatherApp() {
                 temperatureUnit={temperatureUnit}
               />
             )}
-            <WeatherDetails weather={currentWeather} settings={settings} />
-
-            {forecast && (
-              <WeatherSummary
-                weather={currentWeather}
-                forecast={forecast}
-                temperatureUnit={temperatureUnit}
-              />
-            )}
           </div>
 
           {/* Right Column - Hourly Forecast */}
@@ -153,6 +144,15 @@ export function WeatherApp() {
               <ForecastLoading />
             )}
           </div>
+          <WeatherDetails weather={currentWeather} settings={settings} />
+
+          {forecast && (
+            <WeatherSummary
+              weather={currentWeather}
+              forecast={forecast}
+              temperatureUnit={temperatureUnit}
+            />
+          )}
         </div>
       );
     }
