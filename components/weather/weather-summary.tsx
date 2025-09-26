@@ -14,7 +14,6 @@ interface WeatherSummaryProps {
 }
 
 export function WeatherSummary({ weather, forecast, temperatureUnit, className }: WeatherSummaryProps) {
-  // Calculate temperature trend from forecast
   const getTempTrend = () => {
     if (!forecast || forecast.list.length < 2) return null
 
@@ -58,8 +57,8 @@ export function WeatherSummary({ weather, forecast, temperatureUnit, className }
   }
 
   return (
-    <WeatherCard className={cn("mb-20", className)}>
-      <div className='space-y-4 p-6 '>
+    <WeatherCard className={cn("mb-20 bg-weather-dark-purple p-5 border border-weather-medium-purple rounded-md", className)}>
+      <div className='space-y-4'>
         <div className='flex items-center justify-between'>
           <h3 className='text-lg font-semibold text-weather-white'>
             Weather Summary

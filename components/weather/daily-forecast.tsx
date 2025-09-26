@@ -68,7 +68,7 @@ export function DailyForecast({
         {dailyForecast.map((day) => (
           <WeatherCard
             key={day.date}
-            className='text-center p-4 md:w-28 border border-weather-medium-purple bg-weather-dark-purple'
+            className='text-center p-4 md:w-28 border border-weather-medium-purple rounded-md bg-weather-dark-purple'
           >
             <p className='text-weather-light-gray text-sm mb-3'>{day.day}</p>
             <div className='flex justify-center mb-3'>

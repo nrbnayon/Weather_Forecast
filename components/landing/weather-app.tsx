@@ -131,6 +131,17 @@ export function WeatherApp() {
                 temperatureUnit={temperatureUnit}
               />
             )}
+
+            <div className="hidden md:flex md:flex-col md:space-y-6">
+              <WeatherDetails weather={currentWeather} settings={settings} />
+              {forecast && (
+                <WeatherSummary
+                  weather={currentWeather}
+                  forecast={forecast}
+                  temperatureUnit={temperatureUnit}
+                />
+              )}
+            </div>
           </div>
 
           {/* Right Column - Hourly Forecast */}
@@ -144,15 +155,16 @@ export function WeatherApp() {
               <ForecastLoading />
             )}
           </div>
-          <WeatherDetails weather={currentWeather} settings={settings} />
-
-          {forecast && (
-            <WeatherSummary
-              weather={currentWeather}
-              forecast={forecast}
-              temperatureUnit={temperatureUnit}
-            />
-          )}
+          <div className='flex flex-col space-y-6 md:hidden'>
+            <WeatherDetails weather={currentWeather} settings={settings} />
+            {forecast && (
+              <WeatherSummary
+                weather={currentWeather}
+                forecast={forecast}
+                temperatureUnit={temperatureUnit}
+              />
+            )}
+          </div>
         </div>
       );
     }
@@ -167,7 +179,7 @@ export function WeatherApp() {
 
         <div className='px-0 md:px-6'>
           {/* Main Title */}
-          <div className='text-center mb-8 md:mb-12'>
+          <div className='text-center mb-5 md:mb-12'>
             <h2 className='text-[52px] font-bold text-foreground my-8 md:mb-16 text-balance font-display leading-tight'>
               How's the sky looking today?
             </h2>

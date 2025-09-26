@@ -1,22 +1,35 @@
-"use client"
+"use client";
 
-import { Eye, Sunrise, Sunset, Gauge, Droplets, Thermometer } from "lucide-react"
-import { WeatherCard } from "@/components/ui/weather-card"
-import { convertTemperature, formatTime } from "@/utils/weather"
-import type { WeatherData, WeatherSettings } from "@/types/weather"
+import {
+  Eye,
+  Sunrise,
+  Sunset,
+  Gauge,
+  Droplets,
+  Thermometer,
+} from "lucide-react";
+import { WeatherCard } from "@/components/ui/weather-card";
+import { convertTemperature, formatTime } from "@/utils/weather";
+import type { WeatherData, WeatherSettings } from "@/types/weather";
 
 interface WeatherDetailsProps {
-  weather: WeatherData
-  settings: WeatherSettings
-  className?: string
+  weather: WeatherData;
+  settings: WeatherSettings;
+  className?: string;
 }
 
-export function WeatherDetails({ weather, settings, className }: WeatherDetailsProps) {
-  const visibility = Math.round(weather.visibility / 1000) // Convert to km
-  const uvIndex = 0 // Not available in current API response
-  const dewPoint = convertTemperature(weather.main.temp - (100 - weather.main.humidity) / 5, settings.temperatureUnit)
+export function WeatherDetails({
+  weather,
+  settings,
+  className,
+}: WeatherDetailsProps) {
+  const visibility = Math.round(weather.visibility / 1000);
+  const dewPoint = convertTemperature(
+    weather.main.temp - (100 - weather.main.humidity) / 5,
+    settings.temperatureUnit
+  );
 
-  const tempUnit = settings.temperatureUnit === "celsius" ? "°C" : "°F"
+  const tempUnit = settings.temperatureUnit === "celsius" ? "°C" : "°F";
 
   const details = [
     {
@@ -47,24 +60,39 @@ export function WeatherDetails({ weather, settings, className }: WeatherDetailsP
     {
       icon: Thermometer,
       label: "Min/Max",
-      value: `${convertTemperature(weather.main.temp_min, settings.temperatureUnit)}°/${convertTemperature(weather.main.temp_max, settings.temperatureUnit)}°`,
+      value: `${convertTemperature(
+        weather.main.temp_min,
+        settings.temperatureUnit
+      )}°/${convertTemperature(
+        weather.main.temp_max,
+        settings.temperatureUnit
+      )}°`,
     },
-  ]
+  ];
 
   return (
     <div className={className}>
-      <h3 className="text-xl font-semibold text-weather-white mb-4">Weather Details</h3>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <h3 className='text-xl font-semibold text-weather-white mb-4'>
+        Weather Details
+      </h3>
+      <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
         {details.map((detail) => (
-          <WeatherCard key={detail.label} className="flex items-center gap-3 p-4">
-            <detail.icon className="w-5 h-5 text-weather-blue flex-shrink-0" />
-            <div className="min-w-0">
-              <p className="text-weather-light-gray text-sm">{detail.label}</p>
-              <p className="text-weather-white font-semibold truncate">{detail.value}</p>
+          <div
+            key={detail.label}
+            className='w-full flex justify-between items-center gap-3 p-4 bg-weather-dark-purple p-5 border border-weather-medium-purple rounded-md'
+          >
+            <div className='space-y-1'>
+              <detail.icon className='w-5 h-5 text-weather-blue flex-shrink-0' />
+              <p className='text-weather-light-gray text-sm'>{detail.label}</p>
             </div>
-          </WeatherCard>
+            <div className='min-w-0'>
+              <p className='text-weather-white font-semibold truncate'>
+                {detail.value}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
-  )
+  );
 }
