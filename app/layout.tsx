@@ -25,19 +25,19 @@ export const metadata: Metadata = {
     "Get accurate weather forecasts and current conditions for any city worldwide. Features hourly and daily forecasts, weather alerts, and more.",
   keywords: ["weather", "forecast", "temperature", "climate", "weather app"],
   authors: [{ name: "Nayon" }],
-  creator: "Weather Now",
-  publisher: "Weather Now",
+  creator: "Nayon",
+  publisher: "Nayon",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://weather-now.vercel.app"),
+  metadataBase: new URL("https://weather-forecast-ten-eta.vercel.app"),
   openGraph: {
     title: "Weather Now - Real-time Weather Forecast",
     description:
       "Get accurate weather forecasts and current conditions for any city worldwide.",
-    url: "https://weather-now.vercel.app",
+    url: "https://weather-forecast-ten-eta.vercel.app",
     siteName: "Weather Now",
     images: [
       {
