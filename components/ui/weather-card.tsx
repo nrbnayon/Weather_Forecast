@@ -6,12 +6,14 @@ interface WeatherCardProps {
   children: React.ReactNode;
   className?: string;
   variant?: "default" | "gradient" | "glass";
+  style?: React.CSSProperties;
 }
 
 export function WeatherCard({
   children,
   className,
   variant = "default",
+  style,
 }: WeatherCardProps) {
   return (
     <Card
@@ -22,6 +24,7 @@ export function WeatherCard({
         variant === "glass" && "glass-effect",
         className
       )}
+      style={style}
     >
       <CardContent className="p-0">{children}</CardContent>
     </Card>

@@ -144,8 +144,8 @@ export function WeatherApp() {
 
         <div className="px-6">
           {/* Main Title */}
-          <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold text-foreground mb-8 text-balance font-display">
+          <div className="text-center mb-5 md:mb-12">
+            <h2 className="text-2xl md:text-[52px] font-bold text-foreground mb-4 md:mb-16 text-balance font-display">
               How's the sky looking today?
             </h2>
 

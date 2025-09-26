@@ -1,25 +1,29 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useRef, useEffect } from "react"
-import { Search, Loader2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { SearchSuggestions } from "./search-suggestions"
-import { cn } from "@/lib/utils"
-import { useWeatherSearch } from "@/hooks/useWeatherSearch"
+import { useState, useRef, useEffect } from "react";
+import { Search, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { SearchSuggestions } from "./search-suggestions";
+import { cn } from "@/lib/utils";
+import { useWeatherSearch } from "@/hooks/useWeatherSearch";
 
 interface WeatherSearchProps {
-  onSearch: (city: string) => void
-  isLoading?: boolean
-  className?: string
+  onSearch: (city: string) => void;
+  isLoading?: boolean;
+  className?: string;
 }
 
-export function WeatherSearch({ onSearch, isLoading = false, className }: WeatherSearchProps) {
-  const [isFocused, setIsFocused] = useState(false)
-  const searchRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
+export function WeatherSearch({
+  onSearch,
+  isLoading = false,
+  className,
+}: WeatherSearchProps) {
+  const [isFocused, setIsFocused] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const {
     searchQuery,
@@ -30,39 +34,45 @@ export function WeatherSearch({ onSearch, isLoading = false, className }: Weathe
     handleSearchChange,
     handleSuggestionSelect,
     closeSearch,
-  } = useWeatherSearch()
+  } = useWeatherSearch();
 
   // Close search dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-        closeSearch()
-        setIsFocused(false)
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        closeSearch();
+        setIsFocused(false);
       }
     }
 
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [closeSearch])
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [closeSearch]);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (searchQuery.trim()) {
-      onSearch(searchQuery.trim())
-      closeSearch()
-      inputRef.current?.blur()
+      onSearch(searchQuery.trim());
+      closeSearch();
+      inputRef.current?.blur();
     }
-  }
+  };
 
   const handleSuggestionClick = (suggestion: any) => {
-    handleSuggestionSelect(suggestion)
-    onSearch(`${suggestion.name}, ${suggestion.country}`)
-  }
+    handleSuggestionSelect(suggestion);
+    onSearch(`${suggestion.name}, ${suggestion.country}`);
+  };
 
-  const showSearchInProgress = isLoading && searchQuery.trim()
+  const showSearchInProgress = isLoading && searchQuery.trim();
 
   return (
-    <div className={cn("relative max-w-2xl mx-auto", className)} ref={searchRef}>
+    <div
+      className={cn("relative max-w-2xl mx-auto", className)}
+      ref={searchRef}
+    >
       <form onSubmit={handleSubmit} className="flex gap-4">
         <div className="flex-1 relative">
           <div className="relative">
@@ -75,9 +85,9 @@ export function WeatherSearch({ onSearch, isLoading = false, className }: Weathe
               onChange={(e) => handleSearchChange(e.target.value)}
               onFocus={() => setIsFocused(true)}
               className={cn(
-                "pl-12 h-12 text-weather-white placeholder-weather-light-gray border-0 bg-weather-medium-purple",
+                "pl-12 h-12 text-weather-white placeholder-weather-light-gray border-0 !bg-weather-dark-purple",
                 "focus:ring-2 focus:ring-weather-blue focus:bg-weather-dark-purple-gray",
-                "transition-all duration-200",
+                "transition-all duration-200"
               )}
               disabled={isLoading}
             />
@@ -120,5 +130,5 @@ export function WeatherSearch({ onSearch, isLoading = false, className }: Weathe
         </Button>
       </form>
     </div>
-  )
+  );
 }
