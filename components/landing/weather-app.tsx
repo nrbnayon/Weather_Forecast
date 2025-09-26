@@ -54,7 +54,7 @@ export function WeatherApp() {
           <CityNotFound
             searchQuery={selectedCity}
             onNewSearch={handleNewSearch}
-            className="min-h-[400px]"
+            className='min-h-[400px]'
           />
         );
       }
@@ -64,7 +64,7 @@ export function WeatherApp() {
           message={error}
           onRetry={handleRetry}
           onNewSearch={handleNewSearch}
-          className="min-h-[400px]"
+          className='min-h-[400px]'
         />
       );
     }
@@ -72,11 +72,11 @@ export function WeatherApp() {
     // Loading state
     if (isLoading) {
       return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+          <div className='lg:col-span-2'>
             <WeatherLoading />
           </div>
-          <div className="space-y-4">
+          <div className='space-y-4'>
             <ForecastLoading />
           </div>
         </div>
@@ -85,15 +85,15 @@ export function WeatherApp() {
 
     // Empty state (no search yet)
     if (!currentWeather && !selectedCity) {
-      return <SearchEmptyState className="min-h-[400px]" />;
+      return <SearchEmptyState className='min-h-[200px] md:min-h-[400px]' />;
     }
 
     // Weather data available
     if (currentWeather) {
       return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
           {/* Left Column - Main Weather */}
-          <div className="lg:col-span-2 space-y-8 mb-20">
+          <div className='lg:col-span-2 space-y-8 mb-20'>
             <CurrentWeatherCard
               weather={currentWeather}
               temperatureUnit={temperatureUnit}
@@ -110,7 +110,7 @@ export function WeatherApp() {
           </div>
 
           {/* Right Column - Hourly Forecast */}
-          <div className="space-y-4">
+          <div className='space-y-4'>
             {forecast ? (
               <HourlyForecast
                 forecast={forecast}
@@ -129,15 +129,15 @@ export function WeatherApp() {
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen bg-weather-navy px-4 sm:px-6 md:px-6 lg:px-28 max-w-[1440px] mx-auto">
+      <div className='min-h-screen bg-weather-navy px-4 sm:px-6 md:px-6 lg:px-28 max-w-[1440px] mx-auto'>
         <Header />
 
-        <div className="px-6">
+        <div className='px-0 md:px-6'>
           {/* Main Title */}
-          <div className="text-center mb-12">
-          <h2 className="text-[52px] font-bold text-foreground mb-4 md:mb-16 text-balance font-display leading-tight">
-  How's the sky looking today?
-</h2>
+          <div className='text-center mb-8 md:mb-12'>
+            <h2 className='text-[52px] font-bold text-foreground my-8 md:mb-16 text-balance font-display leading-tight'>
+              How's the sky looking today?
+            </h2>
 
             {/* Search Bar */}
             <WeatherSearch onSearch={handleSearch} isLoading={isLoading} />

@@ -30,7 +30,6 @@ export function WeatherSearch({
     searchResults,
     isSearching,
     isSearchOpen,
-    selectedSuggestion,
     handleSearchChange,
     handleSuggestionSelect,
     closeSearch,
@@ -73,14 +72,14 @@ export function WeatherSearch({
       className={cn("relative max-w-2xl mx-auto", className)}
       ref={searchRef}
     >
-      <form onSubmit={handleSubmit} className="flex gap-4">
-        <div className="flex-1 relative">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-weather-light-gray" />
+      <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
+        <div className='flex-1 relative'>
+          <div className='relative'>
+            <Search className='absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-weather-light-gray' />
             <Input
               ref={inputRef}
-              type="text"
-              placeholder="Search for a place..."
+              type='text'
+              placeholder='Search for a place...'
               value={searchQuery}
               onChange={(e) => handleSearchChange(e.target.value)}
               onFocus={() => setIsFocused(true)}
@@ -94,10 +93,10 @@ export function WeatherSearch({
 
             {/* Search in progress indicator */}
             {showSearchInProgress && (
-              <div className="absolute inset-0 bg-weather-medium-purple rounded-lg flex items-center justify-center">
-                <div className="flex items-center gap-2 text-weather-white">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span className="text-sm">Search in progress</span>
+              <div className='absolute inset-0 bg-weather-medium-purple rounded-lg flex items-center justify-center mt-4'>
+                <div className='flex items-center gap-2 text-weather-white'>
+                  <Loader2 className='w-4 h-4 animate-spin' />
+                  <span className='text-sm'>Search in progress</span>
                 </div>
               </div>
             )}
@@ -115,13 +114,13 @@ export function WeatherSearch({
         </div>
 
         <Button
-          type="submit"
-          className="h-12 px-8 text-weather-white font-medium bg-weather-blue hover:bg-weather-blue/90 transition-colors"
+          type='submit'
+          className='h-12 px-8 text-weather-white font-medium bg-weather-blue hover:bg-weather-blue/90 transition-colors w-full sm:w-auto'
           disabled={isLoading || !searchQuery.trim()}
         >
           {isLoading ? (
             <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              <Loader2 className='w-4 h-4 mr-2 animate-spin' />
               Searching...
             </>
           ) : (
@@ -132,3 +131,4 @@ export function WeatherSearch({
     </div>
   );
 }
+  

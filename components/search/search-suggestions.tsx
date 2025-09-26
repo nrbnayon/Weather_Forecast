@@ -25,7 +25,7 @@ export function SearchSuggestions({ results, isLoading, onSelect, query }: Searc
 
   if (results.length === 0 && query.length >= 2) {
     return (
-      <div className="absolute top-full left-0 right-0 mt-2 bg-weather-medium-purple rounded-lg border border-weather-dark-purple-gray shadow-lg z-50">
+      <div className="absolute top-full left-0 right-0 mt-4 bg-weather-dark-purple rounded-lg border border-weather-dark-purple-gray shadow-lg z-50">
         <div className="p-4 text-center">
           <span className="text-weather-light-gray text-sm">No cities found for "{query}"</span>
         </div>
@@ -38,7 +38,7 @@ export function SearchSuggestions({ results, isLoading, onSelect, query }: Searc
   }
 
   return (
-    <div className="absolute top-full left-0 right-0 mt-2 bg-weather-medium-purple rounded-lg border border-weather-dark-purple-gray shadow-lg z-50 max-h-64 overflow-y-auto">
+    <div className="absolute top-full left-0 right-0 mt-4 bg-weather-dark-purple rounded-lg border border-weather-dark-purple-gray shadow-lg z-50 max-h-64 overflow-y-auto">
       {results.map((result, index) => (
         <button
           key={`${result.name}-${result.country}-${result.lat}-${result.lon}`}

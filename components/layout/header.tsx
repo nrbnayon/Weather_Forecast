@@ -13,7 +13,7 @@ export function Header({ className }: HeaderProps) {
   return (
     <header
       className={cn(
-        "flex items-center justify-between py-3 md:py-6 lg:py-12",
+        "flex items-center justify-between py-3 md:py-6 lg:py-10",
         className
       )}
     >

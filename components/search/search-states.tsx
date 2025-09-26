@@ -28,12 +28,12 @@ interface SearchEmptyStateProps {
 
 export function SearchEmptyState({ onLocationSearch, className }: SearchEmptyStateProps) {
   return (
-    <div className={cn("flex flex-col items-center justify-center py-12", className)}>
+    <div className={cn("flex flex-col items-center justify-center py-6 md:py-12", className)}>
       <div className="w-16 h-16 rounded-full bg-weather-medium-purple flex items-center justify-center mb-6">
         <Search className="w-8 h-8 text-weather-white" />
       </div>
 
-      <h3 className="text-2xl font-bold text-weather-white mb-3 text-balance">Search for weather information</h3>
+      <h3 className="text-2xl font-bold text-center text-weather-white mb-3 text-balance">Search for weather information</h3>
 
       <p className="text-weather-light-gray mb-8 max-w-md text-center text-pretty">
         Enter a city name to get current weather conditions and forecasts.
