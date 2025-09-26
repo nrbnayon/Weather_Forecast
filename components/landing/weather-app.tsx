@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useWeatherData } from "@/hooks/useWeatherData"
-import { Header } from "@/components/layout/header"
-import { WeatherSearch } from "@/components/search/weather-search"
-import { CurrentWeatherCard } from "@/components/weather/current-weather-card"
-import { WeatherStats } from "@/components/weather/weather-stats"
-import { DailyForecast } from "@/components/weather/daily-forecast"
-import { HourlyForecast } from "@/components/weather/hourly-forecast"
-import { WeatherDetails } from "@/components/weather/weather-details"
-import { WeatherSummary } from "@/components/weather/weather-summary"
-import { WeatherLoading } from "@/components/loading/weather-loading"
-import { ForecastLoading } from "@/components/loading/forecast-loading"
-import { WeatherError } from "@/components/error/weather-error"
-import { CityNotFound } from "@/components/error/city-not-found"
-import { SearchEmptyState } from "@/components/search/search-states"
-import { ErrorBoundary } from "@/components/error/error-boundary"
+import { useWeatherData } from "@/hooks/useWeatherData";
+import { Header } from "@/components/layout/header";
+import { WeatherSearch } from "@/components/search/weather-search";
+import { CurrentWeatherCard } from "@/components/weather/current-weather-card";
+import { WeatherStats } from "@/components/weather/weather-stats";
+import { DailyForecast } from "@/components/weather/daily-forecast";
+import { HourlyForecast } from "@/components/weather/hourly-forecast";
+import { WeatherDetails } from "@/components/weather/weather-details";
+import { WeatherSummary } from "@/components/weather/weather-summary";
+import { WeatherLoading } from "@/components/loading/weather-loading";
+import { ForecastLoading } from "@/components/loading/forecast-loading";
+import { WeatherError } from "@/components/error/weather-error";
+import { CityNotFound } from "@/components/error/city-not-found";
+import { SearchEmptyState } from "@/components/search/search-states";
+import { ErrorBoundary } from "@/components/error/error-boundary";
 
 export function WeatherApp() {
   const {
@@ -30,32 +30,43 @@ export function WeatherApp() {
     searchWeather,
     clearSearch,
     retrySearch,
-  } = useWeatherData()
+  } = useWeatherData();
 
-  const settings = { temperatureUnit, windSpeedUnit, precipitationUnit }
+  const settings = { temperatureUnit, windSpeedUnit, precipitationUnit };
 
   const handleSearch = (city: string) => {
-    searchWeather(city)
-  }
+    searchWeather(city);
+  };
 
   const handleRetry = () => {
-    retrySearch()
-  }
+    retrySearch();
+  };
 
   const handleNewSearch = () => {
-    clearSearch()
-  }
+    clearSearch();
+  };
 
   const renderContent = () => {
     // Error states
     if (hasError && error) {
       if (error.includes("not found") || error.includes("404")) {
-        return <CityNotFound searchQuery={selectedCity} onNewSearch={handleNewSearch} className="min-h-[400px]" />
+        return (
+          <CityNotFound
+            searchQuery={selectedCity}
+            onNewSearch={handleNewSearch}
+            className="min-h-[400px]"
+          />
+        );
       }
 
       return (
-        <WeatherError message={error} onRetry={handleRetry} onNewSearch={handleNewSearch} className="min-h-[400px]" />
-      )
+        <WeatherError
+          message={error}
+          onRetry={handleRetry}
+          onNewSearch={handleNewSearch}
+          className="min-h-[400px]"
+        />
+      );
     }
 
     // Loading state
@@ -69,12 +80,12 @@ export function WeatherApp() {
             <ForecastLoading />
           </div>
         </div>
-      )
+      );
     }
 
     // Empty state (no search yet)
     if (!currentWeather && !selectedCity) {
-      return <SearchEmptyState className="min-h-[400px]" />
+      return <SearchEmptyState className="min-h-[400px]" />;
     }
 
     // Weather data available
@@ -83,33 +94,52 @@ export function WeatherApp() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Main Weather */}
           <div className="lg:col-span-2 space-y-6">
-            <CurrentWeatherCard weather={currentWeather} temperatureUnit={temperatureUnit} />
+            <CurrentWeatherCard
+              weather={currentWeather}
+              temperatureUnit={temperatureUnit}
+            />
 
             <WeatherStats weather={currentWeather} settings={settings} />
 
-            {forecast && <DailyForecast forecast={forecast} temperatureUnit={temperatureUnit} />}
+            {forecast && (
+              <DailyForecast
+                forecast={forecast}
+                temperatureUnit={temperatureUnit}
+              />
+            )}
 
             <WeatherDetails weather={currentWeather} settings={settings} />
 
             {forecast && (
-              <WeatherSummary weather={currentWeather} forecast={forecast} temperatureUnit={temperatureUnit} />
+              <WeatherSummary
+                weather={currentWeather}
+                forecast={forecast}
+                temperatureUnit={temperatureUnit}
+              />
             )}
           </div>
 
           {/* Right Column - Hourly Forecast */}
           <div className="space-y-4">
-            {forecast ? <HourlyForecast forecast={forecast} temperatureUnit={temperatureUnit} /> : <ForecastLoading />}
+            {forecast ? (
+              <HourlyForecast
+                forecast={forecast}
+                temperatureUnit={temperatureUnit}
+              />
+            ) : (
+              <ForecastLoading />
+            )}
           </div>
         </div>
-      )
+      );
     }
 
-    return null
-  }
+    return null;
+  };
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-weather-navy px-4 sm:px-6 md:px-6 lg:px-28 max-w-[1440px] mx-auto">
         <Header />
 
         <div className="px-6">
@@ -128,5 +158,5 @@ export function WeatherApp() {
         </div>
       </div>
     </ErrorBoundary>
-  )
+  );
 }

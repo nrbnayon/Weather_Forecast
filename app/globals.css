@@ -273,6 +273,10 @@
     text-wrap: pretty;
   }
 
+  .rounded-custom {
+    border-radius: 8px;
+  }
+
   /* Adding font-display utility class for Bricolage Grotesque */
   .font-display {
     font-family: var(--font-bricolage-grotesque);

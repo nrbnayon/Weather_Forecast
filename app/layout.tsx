@@ -1,23 +1,23 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Bricolage_Grotesque, DM_Sans } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { Suspense } from "react"
-import "./globals.css"
-import { ReduxProvider } from "@/redux/provider/redux-provider"
-import { ThemeProvider } from "@/components/ui/theme-provider"
+import type React from "react";
+import type { Metadata } from "next";
+import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { Suspense } from "react";
+import "./globals.css";
+import { ReduxProvider } from "@/redux/provider/redux-provider";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-bricolage-grotesque",
   display: "swap",
-})
+});
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
   display: "swap",
-})
+});
 
 export const metadata: Metadata = {
   title: "Weather Now - Real-time Weather Forecast",
@@ -35,7 +35,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://weather-now.vercel.app"),
   openGraph: {
     title: "Weather Now - Real-time Weather Forecast",
-    description: "Get accurate weather forecasts and current conditions for any city worldwide.",
+    description:
+      "Get accurate weather forecasts and current conditions for any city worldwide.",
     url: "https://weather-now.vercel.app",
     siteName: "Weather Now",
     images: [
@@ -52,7 +53,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Weather Now - Real-time Weather Forecast",
-    description: "Get accurate weather forecasts and current conditions for any city worldwide.",
+    description:
+      "Get accurate weather forecasts and current conditions for any city worldwide.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -69,27 +71,31 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans ${bricolageGrotesque.variable} ${dmSans.variable}`}>
-      <ThemeProvider
+      <body
+        className={`font-sans ${bricolageGrotesque.variable} ${dmSans.variable} bg-weather-navy`}
+      >
+        <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange
           // forcedTheme='dark'
         >
-          <Suspense fallback={null}><ReduxProvider>{children}</ReduxProvider></Suspense>
+          <Suspense fallback={null}>
+            <ReduxProvider>{children}</ReduxProvider>
+          </Suspense>
         </ThemeProvider>
         <Analytics />
       </body>
     </html>
-  )
+  );
 }

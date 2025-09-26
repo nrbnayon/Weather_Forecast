@@ -1,14 +1,18 @@
-import type React from "react"
-import { cn } from "@/lib/utils"
-import { Card, CardContent } from "@/components/ui/card"
+import type React from "react";
+import { cn } from "@/lib/utils";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface WeatherCardProps {
-  children: React.ReactNode
-  className?: string
-  variant?: "default" | "gradient" | "glass"
+  children: React.ReactNode;
+  className?: string;
+  variant?: "default" | "gradient" | "glass";
 }
 
-export function WeatherCard({ children, className, variant = "default" }: WeatherCardProps) {
+export function WeatherCard({
+  children,
+  className,
+  variant = "default",
+}: WeatherCardProps) {
   return (
     <Card
       className={cn(
@@ -16,10 +20,10 @@ export function WeatherCard({ children, className, variant = "default" }: Weathe
         variant === "default" && "bg-weather-medium-purple",
         variant === "gradient" && "weather-gradient",
         variant === "glass" && "glass-effect",
-        className,
+        className
       )}
     >
-      <CardContent className="p-6">{children}</CardContent>
+      <CardContent className="p-0">{children}</CardContent>
     </Card>
-  )
+  );
 }
