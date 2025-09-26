@@ -90,31 +90,31 @@ export function HourlyForecast({
         className
       )}
     >
-      <div className="flex items-center justify-between">
-        <h3 className="text-xl font-semibold text-weather-white">
+      <div className='flex items-center justify-between'>
+        <h3 className='text-xl font-semibold text-weather-white'>
           Hourly forecast
         </h3>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
-              variant="outline"
-              size="lg"
+              variant='outline'
+              size='lg'
               className={cn(
                 "flex items-center justify-center gap-2 text-weather-white border border-weather-medium-purple hover:bg-weather-medium-purple dark:bg-[#3C3B5E] ",
                 className
               )}
             >
               {currentSelectedDay}
-              <ChevronDown className="w-5 h-5 ml-1" />
+              <ChevronDown className='w-5 h-5 ml-1' />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-weather-medium-purple border-weather-dark-purple-gray rounded-lg">
+          <DropdownMenuContent className='bg-weather-dark-purple border border-weather-medium-purple rounded-lg w-40'>
             {availableDays.map((day) => (
               <DropdownMenuItem
                 key={day}
                 onClick={() => setSelectedDay(day)}
-                className="text-weather-white p-2 hover:bg-weather-dark-purple-gray focus:bg-weather-dark-purple-gray rounded-custom"
+                className='text-weather-white p-3 hover:bg-weather-dark-purple-gray focus:bg-weather-dark-purple-gray rounded-custom'
               >
                 {day}
               </DropdownMenuItem>
@@ -123,18 +123,18 @@ export function HourlyForecast({
         </DropdownMenu>
       </div>
 
-      <div className="space-y-3">
+      <div className='space-y-3'>
         {hourlyData.map((hour, index) => (
           <WeatherCard
             key={`${hour.time}-${index}`}
-            className="p-4 bg-weather-dark-purple-gray border border-weather-medium-purple rounded-md"
+            className='p-4 bg-weather-dark-purple-gray border border-weather-medium-purple rounded-md'
           >
-            <div className="flex items-center justify-between w-full">
-              <div className="flex items-center gap-3">
+            <div className='flex items-center justify-between w-full'>
+              <div className='flex items-center gap-3'>
                 <WeatherIcon iconCode={hour.icon} size={40} />
-                <span className="text-weather-white">{hour.time}</span>
+                <span className='text-weather-white'>{hour.time}</span>
               </div>
-              <span className="text-weather-white font-semibold">
+              <span className='text-weather-white font-semibold'>
                 {hour.temp}
                 {unitSymbol}
               </span>
