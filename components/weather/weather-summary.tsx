@@ -59,7 +59,7 @@ export function WeatherSummary({ weather, forecast, temperatureUnit, className }
 
   return (
     <WeatherCard className={cn("", className)}>
-      <div className="space-y-4">
+      <div className="space-y-4 p-6">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold text-weather-white">Weather Summary</h3>
           {tempTrend && (

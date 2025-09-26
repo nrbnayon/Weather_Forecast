@@ -9,8 +9,8 @@ import { CurrentWeatherCard } from "@/components/weather/current-weather-card";
 import { WeatherStats } from "@/components/weather/weather-stats";
 import { DailyForecast } from "@/components/weather/daily-forecast";
 import { HourlyForecast } from "@/components/weather/hourly-forecast";
-// import { WeatherDetails } from "@/components/weather/weather-details";
-// import { WeatherSummary } from "@/components/weather/weather-summary";
+import { WeatherDetails } from "@/components/weather/weather-details";
+import { WeatherSummary } from "@/components/weather/weather-summary";
 import { WeatherLoading } from "@/components/loading/weather-loading";
 import { ForecastLoading } from "@/components/loading/forecast-loading";
 import { WeatherError } from "@/components/error/weather-error";
@@ -127,6 +127,15 @@ export function WeatherApp() {
 
             {forecast && (
               <DailyForecast
+                forecast={forecast}
+                temperatureUnit={temperatureUnit}
+              />
+            )}
+            <WeatherDetails weather={currentWeather} settings={settings} />
+
+            {forecast && (
+              <WeatherSummary
+                weather={currentWeather}
                 forecast={forecast}
                 temperatureUnit={temperatureUnit}
               />
