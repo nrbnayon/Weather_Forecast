@@ -86,7 +86,7 @@ export function HourlyForecast({
   return (
     <div
       className={cn(
-        "space-y-4 bg-weather-dark-purple p-6 rounded-xl mb-20",
+        "space-y-4 bg-weather-dark-purple p-6 rounded-xl mb-5 md:mb-20",
         className
       )}
     >

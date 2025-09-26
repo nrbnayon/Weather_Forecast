@@ -117,7 +117,7 @@ export function WeatherApp() {
       return (
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
           {/* Left Column - Main Weather */}
-          <div className='lg:col-span-2 space-y-8 mb-20'>
+          <div className='lg:col-span-2 space-y-8 mb-5 md:mb-20'>
             <CurrentWeatherCard
               weather={currentWeather}
               temperatureUnit={temperatureUnit}
